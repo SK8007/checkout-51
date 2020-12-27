@@ -1,5 +1,12 @@
 doctrine:
     dbal:
+        host: localhost
+        port: 5432
+        user: main
+        password: main
+        driver: 'pdo_pgsql'
+
+        # if the url option is specified, it will override the above config
         url: '%env(resolve:DATABASE_URL)%'
 
         # IMPORTANT: You MUST configure your server version,
