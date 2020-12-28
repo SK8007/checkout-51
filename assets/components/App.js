@@ -1,9 +1,14 @@
 import React from "react";
+import Banner from "./Banner";
+import Offers from "./Offers";
 
 const App = () => {
-    return (
-        <h1>Hello, world!</h1>
-    );
+  return (
+    <>
+      <Banner />
+      <Offers />
+    </>
+  );
 };
 
 export default App;
