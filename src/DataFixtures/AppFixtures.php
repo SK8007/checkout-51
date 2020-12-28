@@ -6,29 +6,22 @@ use App\Entity\Batch;
 use App\Entity\Offer;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use DateInterval;
 use DateTime;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $fileContents = file_get_contents(__DIR__ . "/c51.json");
-        $contents = json_decode($fileContents, true);
-
-        var_dump($contents);
+        $contents = file_get_contents(__DIR__ . "/../../c51.json");
+        $data = json_decode($contents, true);
 
         $batch = new Batch();
-        $batch->setBatchId($contents['batch_id']);
-        $now = new DateTime();
-        $oneWeek = new DateInterval('P1W');
-        $oneWeekFromNow = $now->add($oneWeek);
-        $batch->setStartDate($now);
-        $batch->setEndDate($oneWeekFromNow);
+        $batch->setBatchId($data['batch_id']);
+        $batch->setStartDate(new DateTime());
 
         $manager->persist($batch);
 
-        foreach ($contents['offers'] as $offer) {
+        foreach ($data['offers'] as $offer) {
             $offerEntity = new Offer();
             $offerEntity->setOfferId($offer['offer_id']);
             $offerEntity->setName($offer['name']);

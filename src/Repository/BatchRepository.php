@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Batch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use DateTime;
+use function Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Batch|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +19,21 @@ class BatchRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Batch::class);
+    }
+
+    public function findCurrentBatch()
+    {
+        $qb = $this->createQueryBuilder('b');
+        $now = new DateTime();
+        return $qb
+            ->where($qb->expr()->lt('b.startDate', ':now'))
+            ->andWhere($qb->expr()->orX(
+                $qb->expr()->gt('b.endDate', ':now'),
+                $qb->expr()->isNull('b.endDate')
+            ))
+            ->setParameter('now', $now)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     // /**
