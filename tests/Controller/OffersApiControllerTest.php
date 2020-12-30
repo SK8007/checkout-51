@@ -46,16 +46,12 @@ class OffersApiControllerTest extends WebTestCase
     public function testGetOffers()
     {
         $this->client->request('GET', '/api/offers');
-
-        $response = json_decode($this->client->getResponse()->getContent(), true);
-
         $this->assertResponseIsSuccessful();
 
-        $contents = file_get_contents(__DIR__ . "/../../c51.json");
-        $data = json_decode($contents, true);
+        $data = json_decode(file_get_contents(__DIR__ . "/../../c51.json"), true);
+        $response = json_decode($this->client->getResponse()->getContent(), true);
 
         $this->assertEquals($data['batch_id'], $response['batchId']);
-
         foreach ($response['offers'] as $i => $offer) {
             $this->assertEquals($data['offers'][$i]['offer_id'], $offer['offerId']);
             $this->assertEquals($data['offers'][$i]['name'], $offer['name']);

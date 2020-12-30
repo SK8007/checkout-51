@@ -19,12 +19,12 @@ class OffersService
     }
 
     /**
-     * @return BatchModel
+     * @return BatchModel|null
      */
-    public function getCurrentBatchOfOffers()
+    public function getCurrentBatchOfOffers() : ?BatchModel
     {
-        $currentBatch = $this->batchRepository->findCurrentBatch();
-        $currentBatchModel = new BatchModel($currentBatch);
-        return $currentBatchModel;
+        $currentBatches = $this->batchRepository->getCurrentBatches();
+
+        return empty($currentBatches) ? null : new BatchModel(reset($currentBatches));
     }
 }

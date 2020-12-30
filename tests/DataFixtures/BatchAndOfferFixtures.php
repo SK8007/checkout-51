@@ -10,6 +10,9 @@ use DateTime;
 
 class BatchAndOfferFixtures
 {
+    /** @var Batch|null $batch */
+    public $batch;
+
     /** @var EntityManager $em */
     private $em;
 
@@ -25,10 +28,11 @@ class BatchAndOfferFixtures
 
     public function setUp() : void
     {
-        $contents = file_get_contents(__DIR__ . "/../../c51.json");
-        $data = json_decode($contents, true);
+        $this->resetDb();
 
-        $batch = new Batch();
+        $data = json_decode(file_get_contents(__DIR__ . "/../../c51.json"), true);
+
+        $this->batch = $batch = new Batch();
         $batch->setBatchId($data['batch_id']);
         $batch->setStartDate(new DateTime());
 
@@ -44,13 +48,19 @@ class BatchAndOfferFixtures
 
             $this->em->persist($offerEntity);
         }
+
         $this->em->flush();
     }
 
     public function tearDown() : void
     {
+        $this->resetDb();
+        $this->em->getConnection()->close();
+    }
+
+    private function resetDb() : void
+    {
         $this->em->getConnection()->executeQuery('DELETE FROM offer');
         $this->em->getConnection()->executeQuery('DELETE FROM batch');
-        $this->em->getConnection()->close();
     }
 }

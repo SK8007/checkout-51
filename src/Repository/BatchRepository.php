@@ -21,19 +21,19 @@ class BatchRepository extends ServiceEntityRepository
         parent::__construct($registry, Batch::class);
     }
 
-    public function findCurrentBatch()
+    public function getCurrentBatches()
     {
         $qb = $this->createQueryBuilder('b');
         $now = new DateTime();
         return $qb
-            ->where($qb->expr()->lt('b.startDate', ':now'))
+            ->where($qb->expr()->lte('b.startDate', ':now'))
             ->andWhere($qb->expr()->orX(
                 $qb->expr()->gt('b.endDate', ':now'),
                 $qb->expr()->isNull('b.endDate')
             ))
             ->setParameter('now', $now)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult();
     }
 
     // /**

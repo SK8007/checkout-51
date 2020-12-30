@@ -12,8 +12,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $contents = file_get_contents(__DIR__ . "/../../c51.json");
-        $data = json_decode($contents, true);
+        $data = json_decode(file_get_contents(__DIR__ . "/../../c51.json"), true);
 
         $batch = new Batch();
         $batch->setBatchId($data['batch_id']);
@@ -31,6 +30,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($offerEntity);
         }
+
         $manager->flush();
     }
 }
