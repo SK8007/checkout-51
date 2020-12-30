@@ -1,0 +1,25 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  margin: 0;
+}
+
+.banner {
+  background: #76b843;
+  height: 80px;
+  text-align: center;
+
+  .logo {
+    height: 80px;
+  }
+}
+
+.offers {
+  padding: 8px;
+
+  .MuiTableCell-root,
+  .MuiInputBase-root,
+  .MuiTypography-caption {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}

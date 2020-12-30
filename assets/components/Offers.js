@@ -42,7 +42,7 @@ const Offers = () => {
   ];
 
   return (
-    <div className="offers" style={{ padding: 8 }}>
+    <div className="offers">
       <MaterialTable
         title="Offers"
         columns={columns}

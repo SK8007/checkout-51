@@ -6,17 +6,14 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
+import "./styles/app.scss";
 
 // start the Stimulus application
-import './bootstrap';
+import "./bootstrap";
 
 import React from "react";
 import ReactDOM from "react-dom";
 
 import App from "./components/App";
 
-ReactDOM.render(
-    <App />,
-    document.getElementById("app")
-);
+ReactDOM.render(<App />, document.getElementById("app"));
