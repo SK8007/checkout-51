@@ -15,7 +15,7 @@ The app uses [material-table](https://material-table.com/) to display the data w
 - Pagination (10, 25, 50, or 100 rows per page)
 - Reordering columns by drag-and-drop
 
-Data from [c51.json](c51.json) is populated in the database through the Doctrine fixture: [src/DataFixtures/AppFixtures.php](src/DataFixtures/AppFixtures.php), and fetched by an API call that traces through:
+Data from [c51.json](c51.json) is populated in the database by the Doctrine fixture: [src/DataFixtures/AppFixtures.php](src/DataFixtures/AppFixtures.php), and fetched by an API call that traces through:
 
 - [src/Controller/OffersApiController.php](src/Controller/OffersApiController.php)
 - [src/Service/OffersService.php](src/Service/OffersService.php)
@@ -41,12 +41,13 @@ To install dependencies, setup the database, and start the web server all in one
 
 **Dependencies:**
 
+- [docker](https://docs.docker.com/get-docker/)
 - [brew](https://brew.sh/)
 - [yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable)
 - [composer](https://getcomposer.org/download/)
 - [symfony](https://symfony.com/download)
 
-To install frontend packages defined in [package.json](package.json) under `node_modules`, run:
+To install the frontend packages defined in [package.json](package.json) under `node_modules`, run:
 
 ```bash
 yarn install
@@ -64,13 +65,19 @@ To build the frontend and watch for file changes, run:
 yarn encore dev --watch
 ```
 
-To install backend packages defined in [composer.json](composer.json) under `vendor`, run:
+To install the backend packages defined in [composer.json](composer.json) under `vendor`, run:
 
 ```bash
 composer install
 ```
 
-To setup the database, run:
+To start up the local database, run:
+
+```bash
+docker-compose up
+```
+
+To populate the database, run:
 
 ```bash
 symfony console doctrine:migrations:migrate
@@ -84,6 +91,25 @@ symfony serve
 ```
 
 To view the app, go to: https://localhost:8000/
+
+To shut down the database, run:
+
+```bash
+docker-compose down
+```
+
+To stop the server, run:
+
+```bash
+symfony server:stop
+```
+
+To start the database and server in the background, run the commands with the `-d`:
+
+```bash
+docker-compose up -d
+symfony serve -d
+```
 
 ## Running Tests
 

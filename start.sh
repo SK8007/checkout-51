@@ -22,6 +22,9 @@ yarn install
 # Install composer packages
 composer install
 
+# Start local database
+docker-compose up -d
+
 # Setup database
 symfony console doctrine:migrations:migrate
 symfony console doctrine:fixtures:load
