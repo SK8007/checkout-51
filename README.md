@@ -6,7 +6,7 @@
 
 ## Overview
 
-This project was built in [PHP](https://www.php.net/) and [React](https://reactjs.org/) using [Symfony](https://symfony.com/) and [Webpack Encore](https://www.npmjs.com/package/@symfony/webpack-encore), with a [PostgreSQL](https://www.postgresql.org/) database and deployment to [Heroku](https://www.heroku.com/).
+This project is built in [PHP](https://www.php.net/) and [React](https://reactjs.org/) using [Symfony](https://symfony.com/) and [Webpack Encore](https://www.npmjs.com/package/@symfony/webpack-encore), with a [PostgreSQL](https://www.postgresql.org/) database and deployment to [Heroku](https://www.heroku.com/). Styles are written in [SCSS](https://sass-lang.com/documentation/syntax#scss)
 
 The app uses [material-table](https://material-table.com/) to display the data with the following features:
 
@@ -25,11 +25,18 @@ To get the most recent batch of offers and package them in [Models](src/Model/) 
 
 Note that the Doctrine fixture is also used to populate the Heroku database on deployment during the `release` phase as specified in the [Procfile](Procfile) via the `doctrine:fixtures:load` command.
 
+Tests are written in [PHPUnit](https://phpunit.readthedocs.io/en/9.5/) for the backend and [jest](https://jestjs.io/en/) with [enzyme](https://enzymejs.github.io/enzyme/) for the frontend.
+
+The backend tests are a combination of unit tests for the [Service](tests/Service/OffersServiceTest.php) and [Model](tests/Model/) classes and end-to-end, functional integration tests for the [Controllers](tests/Controller/) and [Repositories](tests/Repository/BatchRepositoryTest.php) that utilize [tests/DataFixtures/BatchAndOfferFixtures.php](tests/DataFixtures/BatchAndOfferFixtures.php) to setup the database for assertions. After the tests are run, any database changes are rolled back by the [doctrine-test-bundle](https://github.com/dmaicher/doctrine-test-bundle) automatically.
+
+The frontend tests are composed of unit tests that use [enzyme](https://enzymejs.github.io/enzyme/) to mount the React components in a virtual DOM and [jest](https://jestjs.io/en/) as the testing framework to run the tests, make assertions, and facilitate mocks.
+
 **Stack:**
 
 - [PostgreSQL](https://www.postgresql.org/)
 - [PHP](https://www.php.net/) ([Symfony](https://symfony.com/), [PHPUnit](https://phpunit.readthedocs.io/en/9.5/))
 - [React](https://reactjs.org/) ([Webpack Encore](https://www.npmjs.com/package/@symfony/webpack-encore), [jest](https://jestjs.io/en/), [enzyme](https://enzymejs.github.io/enzyme/))
+- [SCSS](https://sass-lang.com/documentation/syntax#scss)
 
 ## Getting Started
 
