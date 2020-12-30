@@ -10,28 +10,22 @@ Heroku deployment: https://shrouded-harbor-16023.herokuapp.com/
 
 ## Running Tests
 
-To run backend PHPUnit tests, run the following command in the root directory of the project:
+To run all backend PHPUnit tests, run either of the following commands in the root directory of the project:
 
 ```bash
 symfony php bin/phpunit
 ```
 
-Or:
-
 ```bash
 php bin/phpunit
 ```
 
-## Generating Code
-
-To generate a backend unit test file under the `tests` directory, run:
+To run a specific test, append the relative file path like so:
 
 ```bash
-symfony console make:unit-test UnitTest
+symfony php bin/phpunit tests/Controller/OffersApiControllerTest.php
 ```
 
-To generate a backend functional test file under the `tests` directory, run:
-
 ```bash
-symfony console make:functional-test FunctionalTest
+php bin/phpunit tests/Controller/OffersApiControllerTest.php
 ```
