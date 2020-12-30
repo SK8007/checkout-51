@@ -28,8 +28,8 @@ Note that the Doctrine fixture is also used to populate the Heroku database on d
 **Stack:**
 
 - [PostgreSQL](https://www.postgresql.org/)
-- [PHP](https://www.php.net/) ([Symfony](https://symfony.com/))
-- [React](https://reactjs.org/) ([Webpack Encore](https://www.npmjs.com/package/@symfony/webpack-encore))
+- [PHP](https://www.php.net/) ([Symfony](https://symfony.com/), [PHPUnit](https://phpunit.readthedocs.io/en/9.5/))
+- [React](https://reactjs.org/) ([Webpack Encore](https://www.npmjs.com/package/@symfony/webpack-encore), [jest](https://jestjs.io/en/), [enzyme](https://enzymejs.github.io/enzyme/))
 
 ## Getting Started
 
@@ -119,8 +119,20 @@ To run all backend tests, run:
 symfony php bin/phpunit
 ```
 
-To run a specific test, append the relative file path:
+To run a specific test, append the file path:
 
 ```bash
 symfony php bin/phpunit tests/Controller/OffersApiControllerTest.php
+```
+
+To run all frontend tests, run:
+
+```bash
+yarn jest
+```
+
+To run a specific test, append the file path:
+
+```bash
+yarn jest assets/components/App.test.js
 ```
