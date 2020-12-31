@@ -5,11 +5,11 @@ import MaterialTable from "material-table";
 const Offers = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [data, setData] = React.useState([]);
+
   React.useEffect(async () => {
     setIsLoading(true);
     try {
       const apiData = await axios("api/offers");
-      console.log(apiData);
       const {
         data: { offers },
       } = apiData;
