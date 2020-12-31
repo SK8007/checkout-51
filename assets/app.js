@@ -11,6 +11,8 @@ import "./styles/app.scss";
 // start the Stimulus application
 import "./bootstrap";
 
+import "regenerator-runtime/runtime.js";
+
 import React from "react";
 import ReactDOM from "react-dom";
 

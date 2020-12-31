@@ -2,11 +2,17 @@
 
 [Heroku](https://www.heroku.com/) deployment: https://shrouded-harbor-16023.herokuapp.com/
 
-![screenshot](public/images/screenshot.png)
+| Desktop                                             |
+| --------------------------------------------------- |
+| ![screenshot](public/images/desktop-screenshot.png) |
+
+| Mobile                                               | Mobile                                               |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| ![screenshot](public/images/mobile-screenshot-1.png) | ![screenshot](public/images/mobile-screenshot-2.png) |
 
 ## Overview
 
-This project is built in [PHP](https://www.php.net/) and [React](https://reactjs.org/) using [Symfony](https://symfony.com/) and [Webpack Encore](https://www.npmjs.com/package/@symfony/webpack-encore), with a [PostgreSQL](https://www.postgresql.org/) database and deployment to [Heroku](https://www.heroku.com/). Styles are written in [SCSS](https://sass-lang.com/documentation/syntax#scss)
+This project is built in [PHP](https://www.php.net/) and [React](https://reactjs.org/) using [Symfony](https://symfony.com/) and [Webpack Encore](https://www.npmjs.com/package/@symfony/webpack-encore), with a [PostgreSQL](https://www.postgresql.org/) database and deployment to [Heroku](https://www.heroku.com/). Styles are written in [SCSS](https://sass-lang.com/documentation/syntax#scss) and the app is responsive so compatible on both desktop and mobile devices.
 
 The app uses [material-table](https://material-table.com/) to display the data with the following features:
 
