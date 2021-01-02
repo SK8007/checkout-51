@@ -27,7 +27,7 @@ body {
   }
 
   @media screen and (max-width: 392px) {
-    [class^="MTableToolbar-title"] {
+    .MuiTypography-h6 {
       display: none;
     }
   }
