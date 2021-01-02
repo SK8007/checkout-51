@@ -47,11 +47,9 @@ const Offers = () => {
   };
 
   return (
-    <div data-test-id="offers" className="offers">
+    <div className="offers">
       <MaterialTable
-        title={
-          <h6 className="title MuiTypography-root MuiTypography-h6">Offers</h6>
-        }
+        title="Offers"
         columns={columns}
         data={data}
         options={options}

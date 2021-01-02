@@ -34,48 +34,40 @@ test("Offers renders expected components", async () => {
 
   await waitForComponentToPaint(offers);
 
-  const container = offers.find('[data-test-id="offers"]');
-  expect(container.exists()).toBe(true);
-  expect(container.hasClass("offers")).toBe(true);
-
-  const table = container.find(MaterialTable);
-  expect(table.exists()).toBe(true);
-
-  const title = shallow(table.prop("title"));
   expect(
-    title.matchesElement(
-      <h6 className="title MuiTypography-root MuiTypography-h6">Offers</h6>
+    offers.contains(
+      <div className="offers">
+        <MaterialTable
+          title="Offers"
+          columns={[
+            { title: "ID", field: "offerId" },
+            { title: "Name", field: "name" },
+            { title: "Image", field: "image", sorting: false },
+            {
+              title: "Cash Back",
+              field: "cashBack",
+              type: "currency",
+              currencySetting: {
+                locale: "en-US",
+                currencyCode: "USD",
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              },
+            },
+          ]}
+          data={[
+            {
+              ...offer,
+              image: <img src={offer.imageUrl} alt={offer.name} />,
+            },
+          ]}
+          options={{
+            pageSize: 25,
+            pageSizeOptions: [10, 25, 50, 100],
+          }}
+          isLoading={false}
+        />
+      </div>
     )
   ).toBe(true);
-
-  expect(table.prop("columns")).toEqual([
-    { title: "ID", field: "offerId" },
-    { title: "Name", field: "name" },
-    { title: "Image", field: "image", sorting: false },
-    {
-      title: "Cash Back",
-      field: "cashBack",
-      type: "currency",
-      currencySetting: {
-        locale: "en-US",
-        currencyCode: "USD",
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      },
-    },
-  ]);
-
-  expect(table.prop("data")).toEqual([
-    {
-      ...offer,
-      image: <img src={offer.imageUrl} alt={offer.name} />,
-    },
-  ]);
-
-  expect(table.prop("options")).toEqual({
-    pageSize: 25,
-    pageSizeOptions: [10, 25, 50, 100],
-  });
-
-  expect(table.prop("isLoading")).toBe(false);
 });
