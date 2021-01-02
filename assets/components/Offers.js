@@ -41,17 +41,21 @@ const Offers = () => {
     },
   ];
 
+  const options = {
+    pageSize: 25,
+    pageSizeOptions: [10, 25, 50, 100],
+  };
+
   return (
-    <div className="offers">
+    <div data-test-id="offers" className="offers">
       <MaterialTable
-        title="Offers"
+        title={
+          <h6 className="title MuiTypography-root MuiTypography-h6">Offers</h6>
+        }
         columns={columns}
         data={data}
+        options={options}
         isLoading={isLoading}
-        options={{
-          pageSize: 25,
-          pageSizeOptions: [10, 25, 50, 100],
-        }}
       />
     </div>
   );
